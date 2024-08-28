@@ -1,15 +1,13 @@
 import { hash } from "bcrypt";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities/user.entitie";
-import {
-  TUserRequest,
-  TUserResponse,
-  TUser,
-} from "../interfaces/users.interfaces";
+import { TUserRequest, TUserResponse } from "../interfaces/users.interfaces";
 import {
   userSchemaResponse,
+  userSchemaUpdate,
   usersSchemaResponse,
 } from "../schemas/users.schema";
+import { AppError } from "../errors/AppError";
 
 class UsersService {
   async createUserService({
@@ -20,7 +18,7 @@ class UsersService {
     const userRepository = AppDataSource.getRepository(User);
     const findUser = await userRepository.findOne({ where: { email } });
     if (findUser) {
-      throw new Error("User already exists");
+      throw new AppError("User already exists", 409);
     }
 
     const hashedPassowrd = await hash(password, 10);
@@ -48,7 +46,7 @@ class UsersService {
     const user = await userRepository.findOne({ where: { id } });
 
     if (!user) {
-      throw new Error("User not found");
+      throw new AppError("User not found");
     }
     await userRepository.remove(user);
   }
@@ -60,14 +58,14 @@ class UsersService {
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({ where: { id } });
     if (!user) {
-      throw new Error("User notFound");
+      throw new AppError("User notFound");
     }
 
     if (name) user.name = name;
     if (email) {
       const findUser = await userRepository.findOne({ where: { email } });
       if (findUser && findUser.id !== user.id) {
-        throw new Error("email already in use by another user");
+        throw new AppError("email already in use by another user", 409);
       }
       user.email = email;
     }
@@ -77,7 +75,7 @@ class UsersService {
 
     await userRepository.save(user);
 
-    return userSchemaResponse.parse(user);
+    return userSchemaUpdate.parse(user);
   }
 }
 

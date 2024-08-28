@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { TUserRequest } from "../interfaces/users.interfaces";
 import { UsersService } from "../services/users.service";
+import { AppError } from "../errors/AppError";
 
 class UsersController {
   constructor(private userService: UsersService) {}
@@ -14,7 +15,7 @@ class UsersController {
       });
       return res.status(201).json(newUser);
     } catch (err) {
-      return res.status(400).json({ error: (err as Error).message });
+      return res.status(400).json({ error: (err as AppError).message });
     }
   }
 
@@ -30,7 +31,7 @@ class UsersController {
       await this.userService.DeleteUserService(userId);
       return res.status(204).json();
     } catch (err) {
-      return res.status(404).json({ error: (err as Error).message });
+      return res.status(404).json({ error: (err as AppError).message });
     }
   }
 
@@ -44,7 +45,7 @@ class UsersController {
       );
       return res.status(200).json(updatedUser);
     } catch (err) {
-      return res.status(404).json({ error: (err as Error).message });
+      return res.status(404).json({ error: (err as AppError).message });
     }
   }
 }
