@@ -5,7 +5,7 @@ import { AppError } from "../errors/AppError";
 
 class UsersController {
   constructor(private userService: UsersService) {}
-  async createUserController(req: Request, res: Response) {
+  async createUser(req: Request, res: Response) {
     try {
       const { name, email, password }: TUserRequest = req.body;
       const newUser = await this.userService.createUserService({
@@ -19,12 +19,19 @@ class UsersController {
     }
   }
 
-  async listUsersController(_: Request, res: Response) {
+  async listUsers(_: Request, res: Response) {
     const users = await this.userService.ListUsersService();
     return res.json(users);
   }
 
-  async deleteUserController(req: Request, res: Response): Promise<Response> {
+  async listOneUser(req: Request, res: Response) {
+    const userId = req.params.userId;
+    const user = await this.userService.ListOneUserById(userId);
+
+    return res.json(user);
+  }
+
+  async deleteUser(req: Request, res: Response): Promise<Response> {
     try {
       const userId = req.params.userId;
       console.log("Deleting user with ID:", userId);
@@ -35,7 +42,7 @@ class UsersController {
     }
   }
 
-  async updateUserController(req: Request, res: Response): Promise<Response> {
+  async updateUser(req: Request, res: Response): Promise<Response> {
     try {
       const userId = req.params.userId;
       const userData: Partial<TUserRequest> = req.body;

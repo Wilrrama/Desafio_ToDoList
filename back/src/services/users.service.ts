@@ -41,6 +41,17 @@ class UsersService {
     return usersSchemaResponse.parse(users);
   }
 
+  async ListOneUserById(id: string) {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new AppError("User not found");
+    }
+
+    return userSchemaResponse.parse(user);
+  }
+
   async DeleteUserService(id: string): Promise<void> {
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOne({ where: { id } });

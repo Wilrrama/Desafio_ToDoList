@@ -8,18 +8,23 @@ const usersRoutes = Router();
 usersRoutes.post(
   "",
   ensureDataIsValidMiddleware(userSchemaRequest),
-  (req, res) => usersController.createUserController(req, res)
+  (req, res) => usersController.createUser(req, res)
 );
 
 usersRoutes.get("", (req, res) => {
-  usersController.listUsersController(req, res);
+  usersController.listUsers(req, res);
 });
+
+usersRoutes.get("/:userId", (req, res) => {
+  usersController.listOneUser(req, res);
+});
+
 usersRoutes.delete("/:userId", (req, res) => {
-  usersController.deleteUserController(req, res);
+  usersController.deleteUser(req, res);
 });
 
 usersRoutes.patch("/:userId", (req, res) => {
-  usersController.updateUserController(req, res);
+  usersController.updateUser(req, res);
 });
 
 export { usersRoutes };
