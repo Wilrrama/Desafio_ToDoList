@@ -15,20 +15,18 @@ usersRoutes.get("", (req, res) => {
   usersController.listUsers(req, res);
 });
 
-usersRoutes.get("/:userId", (req, res) => {
-  usersController.listOneUser(req, res);
-});
+usersRoutes.get("/:userId", (req, res) =>
+  usersController.listOneUser(req, res)
+);
 
-usersRoutes.delete("/:userId", (req, res) => {
-  usersController.deleteUser(req, res);
-});
+usersRoutes.delete("/:userId", (req, res) =>
+  usersController.deleteUser(req, res)
+);
 
 usersRoutes.patch(
   "/:userId",
   ensureDataIsValidMiddleware(userSchemaRequest),
-  (req, res) => {
-    usersController.updateUser(req, res);
-  }
+  (req, res) => usersController.updateUser(req, res)
 );
 
 export { usersRoutes };

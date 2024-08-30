@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { AppDataSource } from "../data-source";
 import { Task } from "../entities/tasks.entity";
 import { AppError } from "../errors/AppError";
-import exp from "constants";
 
 const ensureIsOwnerMiddleware = async (
   req: Request,

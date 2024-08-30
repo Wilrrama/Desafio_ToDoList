@@ -4,6 +4,7 @@ import express from "express";
 import { usersRoutes } from "./routes/users.route";
 import { handleAppErrorMiddleware } from "./middlewares/handleAppError.middleware";
 import { sessionRouter } from "./routes/session.route";
+import { tasksRoutes } from "./routes/tasks.route";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get("/", (req, res) => res.json("Minha primeira vaga Dev, Desafio To Do"));
 
 app.use("/users", usersRoutes);
 app.use("/login", sessionRouter);
+app.use("/tasks", tasksRoutes);
 
 app.use(handleAppErrorMiddleware);
 

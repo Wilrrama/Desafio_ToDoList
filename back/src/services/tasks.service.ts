@@ -62,23 +62,27 @@ class TasksService {
 
     return taskSchema.parse(task);
   }
-  async deleteTaskService(taskId: string) {
+  async deleteTaskService(id: string): Promise<void> {
     const taskRepository = AppDataSource.getRepository(Task);
-    const task = await taskRepository.findOneBy({ id: taskId });
+    const task = await taskRepository.findOne({ where: { id } });
     if (!task) {
       throw new AppError("Task not found", 404);
     }
 
     await taskRepository.remove(task);
-    //await taskRepository.delete(taskId);
   }
 
-  async listOneTask(taskId: string) {
+  async listOneTask(id: string) {
     const taskRepository = AppDataSource.getRepository(Task);
-    const task = await taskRepository.findOneBy({ id: taskId });
+
+    console.log(`Buscando a tarefa com o ID: ${id}`);
+
+    const task = await taskRepository.findOneBy({ id });
     if (!task) {
       throw new AppError("Task not found", 404);
     }
+
+    console.log(`Tarefa encontrada:`, task);
 
     return taskSchema.parse(task);
   }

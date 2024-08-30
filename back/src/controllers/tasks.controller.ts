@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { TasksService } from "../services/tasks.service";
 import { TTasksResponse, TTaskUpdate } from "../interfaces/tasks.interfaces";
+import { AppError } from "../errors/AppError";
 class TasksController {
   constructor(private tasksService: TasksService) {}
   async createTask(req: Request, res: Response) {
@@ -22,7 +23,7 @@ class TasksController {
   }
 
   async listOneTask(req: Request, res: Response) {
-    const taskId: string = req.params.id;
+    const taskId: string = req.params.taskId;
     const task = await this.tasksService.listOneTask(taskId);
 
     res.json(task);
@@ -30,7 +31,7 @@ class TasksController {
 
   async updateTask(req: Request, res: Response) {
     const taskData: TTaskUpdate = req.body;
-    const taskId: string = req.params.id;
+    const taskId = req.params.taskId;
 
     const updateTask = await this.tasksService.updateTaskService(
       taskData,
@@ -40,10 +41,15 @@ class TasksController {
     return res.json(updateTask);
   }
 
-  async deleteTask(req: Request, res: Response) {
-    const taskId: string = req.params.id;
-    await this.tasksService.deleteTaskService(taskId);
-    return res.status(204).send();
+  async deleteTask(req: Request, res: Response): Promise<Response> {
+    try {
+      const taskId = req.params.taskId;
+      console.log("Deleting task with ID:", taskId);
+      await this.tasksService.deleteTaskService(taskId);
+      return res.status(204).send();
+    } catch (err) {
+      return res.status(404).json({ error: (err as AppError).message });
+    }
   }
 }
 
