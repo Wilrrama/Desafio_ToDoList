@@ -23,8 +23,12 @@ usersRoutes.delete("/:userId", (req, res) => {
   usersController.deleteUser(req, res);
 });
 
-usersRoutes.patch("/:userId", (req, res) => {
-  usersController.updateUser(req, res);
-});
+usersRoutes.patch(
+  "/:userId",
+  ensureDataIsValidMiddleware(userSchemaRequest),
+  (req, res) => {
+    usersController.updateUser(req, res);
+  }
+);
 
 export { usersRoutes };
