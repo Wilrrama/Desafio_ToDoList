@@ -36,7 +36,7 @@ class UsersController {
       const userId = req.params.userId;
       console.log("Deleting user with ID:", userId);
       await this.userService.DeleteUserService(userId);
-      return res.status(204).json();
+      return res.status(204).send();
     } catch (err) {
       return res.status(404).json({ error: (err as AppError).message });
     }

@@ -1,6 +1,6 @@
 import { compare } from "bcrypt";
 import { AppDataSource } from "../data-source";
-import { User } from "../entities/user.entitie";
+import { User } from "../entities/user.entity";
 import { AppError } from "../errors/AppError";
 import { TLoginRequest } from "../interfaces/login.interfaces";
 import { sign } from "jsonwebtoken";

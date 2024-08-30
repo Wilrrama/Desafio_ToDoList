@@ -3,8 +3,6 @@ import { sessionController } from "../controllers";
 
 const sessionRouter = Router();
 
-sessionRouter.post("", (req, res) =>
-  sessionController.createLoginController(req, res)
-);
+sessionRouter.post("", (req, res) => sessionController.createLogin(req, res));
 
 export { sessionRouter };
