@@ -33,6 +33,8 @@ class TasksController {
     const taskData: TTaskUpdate = req.body;
     const taskId = req.params.taskId;
 
+    console.log("update task with ID:", taskId);
+
     const updateTask = await this.tasksService.updateTaskService(
       taskData,
       taskId

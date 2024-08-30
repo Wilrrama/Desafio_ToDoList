@@ -9,7 +9,7 @@ const ensureIsOwnerMiddleware = async (
   next: NextFunction
 ) => {
   const taskRepository = AppDataSource.getRepository(Task);
-  const taskId = req.params.id;
+  const taskId = req.params.taskId;
   const userId = res.locals.userId;
 
   const task = await taskRepository.findOne({
