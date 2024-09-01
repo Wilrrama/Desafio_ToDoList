@@ -6,7 +6,6 @@ function App() {
     <>
       <ResetStyles />
       <Header />
-      <h1>Vite + React</h1>
     </>
   );
 }
