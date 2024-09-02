@@ -1,4 +1,6 @@
 import { ResetStyles } from "./styles/resetStyles";
+
+import { RoutesMain } from "./routes/RoutesMain";
 import { Header } from "./components/header";
 
 function App() {
@@ -6,6 +8,7 @@ function App() {
     <>
       <ResetStyles />
       <Header />
+      <RoutesMain />
     </>
   );
 }
