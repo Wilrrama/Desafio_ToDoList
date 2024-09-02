@@ -12,7 +12,7 @@ export const StyledHeader = styled.header`
     rgba(0, 0, 0, 0.8),
     rgba(251, 188, 36, 0.8)
   );
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   h1 {
@@ -22,8 +22,8 @@ export const StyledHeader = styled.header`
   }
 
   img {
-    height: 80px; /* Ajuste a altura da imagem conforme necessário */
+    height: 80px;
     object-fit: contain;
-    margin-top: 10px; /* Adiciona um espaço acima da imagem */
+    margin-top: 10px;
   }
 `;
