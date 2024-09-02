@@ -11,14 +11,15 @@ export const ResetStyles = createGlobalStyle`
   }
 
   html{
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-x: hidden; 
 
   }
 
   body {
     line-height: 1;
     overflow-x: hidden;
+    /* overflow-y: hidden; */
+  
   }
 
   button {
