@@ -11,4 +11,5 @@ export const MainContent = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #4d4d4d;
 `;
