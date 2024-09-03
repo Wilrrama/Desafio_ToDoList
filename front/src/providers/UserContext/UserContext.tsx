@@ -13,6 +13,7 @@ export interface IUserProviderProps {
 export interface IUserContext {
   user: IUser | null;
   userLogin: (formData: any) => Promise<void>;
+  userLogout: () => void;
 }
 
 export interface IUser {
@@ -40,8 +41,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const userLogout = () => {
+    setUser(null);
+
+    localStorage.removeItem("@TOKEN_TODO");
+
+    navigate("/");
+  };
+
   return (
-    <UserContext.Provider value={{ user, userLogin }}>
+    <UserContext.Provider value={{ user, userLogin, userLogout }}>
       {children}
     </UserContext.Provider>
   );
