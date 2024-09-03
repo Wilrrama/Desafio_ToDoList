@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledRegister = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 20px;
   width: 100%;
@@ -12,11 +12,10 @@ export const StyledRegister = styled.section`
 
   h3 {
     color: #fff;
-    margin-bottom: 20px;
-    text-decoration: underline;
+    margin-bottom: 10px;
+
     cursor: pointer;
     transition: color 0.3s ease;
-    text-align: left;
   }
 
   h3:hover {
@@ -27,7 +26,7 @@ export const StyledRegister = styled.section`
     font-size: 2.5rem;
     color: #fff;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
   }
 
   p {

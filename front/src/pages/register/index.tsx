@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import { Input } from "../../fragments/input";
 import { Button } from "../../fragments/button";
 import { StyledRegister } from "./styles";
+import { FaArrowLeft } from "react-icons/fa";
 
 export const Register = () => {
   return (
     <StyledRegister>
       <Link to="/">
-        <h3>Voltar</h3>
+        <h3>
+          <FaArrowLeft />
+          Voltar
+        </h3>
       </Link>
       <h1>Cadastre-se</h1>
       <p>Preencha os campos abaixo para criar uma conta</p>
