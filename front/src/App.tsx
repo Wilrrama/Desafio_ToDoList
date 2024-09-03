@@ -4,6 +4,7 @@ import { RoutesMain } from "./routes/RoutesMain";
 import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { AppContainer, MainContent } from "./styles/appStyles";
+import { UserProvider } from "./providers/UserContext/UserContext";
 
 function App() {
   return (
@@ -12,7 +13,9 @@ function App() {
       <AppContainer>
         <Header />
         <MainContent>
-          <RoutesMain />
+          <UserProvider>
+            <RoutesMain />
+          </UserProvider>
         </MainContent>
         <Footer />
       </AppContainer>
