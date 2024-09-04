@@ -11,7 +11,7 @@ export const StyledHome = styled.main`
   margin: 0 auto;
 
   img {
-    max-width: 300px;
+    max-width: 380px;
     height: auto;
     flex: 1;
     object-fit: contain;

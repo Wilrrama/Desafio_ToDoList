@@ -13,7 +13,6 @@ export const StyledRegister = styled.section`
   h3 {
     color: #fff;
     margin-bottom: 10px;
-
     cursor: pointer;
     transition: color 0.3s ease;
   }
@@ -36,6 +35,13 @@ export const StyledRegister = styled.section`
     text-align: left;
   }
 
+  span {
+    font-size: 0.875rem;
+    color: #ffcc00;
+    margin-top: 4px;
+    text-align: left;
+  }
+
   .form-container {
     display: flex;
     flex-direction: column;
@@ -44,14 +50,20 @@ export const StyledRegister = styled.section`
 
     .input-row {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       gap: 15px;
       width: 100%;
+
+      /* Garantir que cada input ocupe o mesmo espaço */
+      .input-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
     }
 
     input {
-      flex: 1;
       padding: 12px;
       font-size: 1rem;
       background-color: #fff;
@@ -74,6 +86,7 @@ export const StyledRegister = styled.section`
       align-items: center;
       justify-content: center;
     }
+
     button {
       padding: 12px;
       font-size: 1.2rem;
@@ -84,7 +97,7 @@ export const StyledRegister = styled.section`
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      width: 80%; /* Garante que o botão ocupe toda a largura disponível */
+      width: 100%;
       box-sizing: border-box;
     }
 
@@ -97,7 +110,6 @@ export const StyledRegister = styled.section`
   @media (max-width: 480px) {
     align-items: center;
 
-    h3,
     h1,
     p {
       text-align: center;
@@ -117,7 +129,7 @@ export const StyledRegister = styled.section`
       align-items: center;
       justify-content: center;
       button {
-        width: 70%;
+        width: 100%;
       }
     }
   }
