@@ -13,7 +13,7 @@ export const StyledLogin = styled.section`
     max-width: 400px;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px rgba(251, 188, 36, 0.8);
 
     h1 {
       font-size: 2rem;
@@ -71,14 +71,14 @@ export const StyledLogin = styled.section`
         font-size: 1.2rem;
         font-weight: bold;
         color: #fff;
-        background-color: #ffcc00;
+        background-color: rgba(251, 188, 36, 0.8);
         border: none;
         border-radius: 8px;
         cursor: pointer;
         transition: background-color 0.3s ease, transform 0.2s ease;
 
         &:hover {
-          background-color: #333;
+          background-color: #000000;
           transform: scale(1.05);
         }
       }

@@ -53,24 +53,32 @@ export const Register = () => {
       <form onSubmit={handleSubmit(submit)}>
         <div className="form-container">
           <div className="input-row">
-            <Input type="text" placeholder="Nome" {...register("name")} />
-            {errors.name && <p>{errors.name.message}</p>}
-            <Input type="email" placeholder="E-mail" {...register("email")} />
-            {errors.email && <p>{errors.email.message}</p>}
+            <div className="input-wrapper">
+              <Input type="text" placeholder="Nome" {...register("name")} />
+              {errors.name && <span>{errors.name.message}</span>}
+            </div>
+            <div className="input-wrapper">
+              <Input type="email" placeholder="E-mail" {...register("email")} />
+              {errors.email && <span>{errors.email.message}</span>}
+            </div>
           </div>
           <div className="input-row">
-            <Input
-              type="password"
-              placeholder="Senha"
-              {...register("password")}
-            />
-            {errors.password && <p>{errors.password.message}</p>}
-            <Input
-              type="password"
-              placeholder="Confirme sua senha"
-              {...register("confirmPassword")}
-            />
-            {errors.password && <p>{errors.password.message}</p>}
+            <div className="input-wrapper">
+              <Input
+                type="password"
+                placeholder="Senha"
+                {...register("password")}
+              />
+              {errors.password && <span>{errors.password.message}</span>}
+            </div>
+            <div className="input-wrapper">
+              <Input
+                type="password"
+                placeholder="Confirme sua senha"
+                {...register("confirmPassword")}
+              />
+              {errors.password && <span>{errors.password.message}</span>}
+            </div>
           </div>
           <div className="button-container">
             <Button name={"Cadastrar"} type="submit" />
