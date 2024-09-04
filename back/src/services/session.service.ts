@@ -23,6 +23,7 @@ export class SessionService {
       expiresIn: "1h",
       subject: findUser.id,
     });
-    return token;
+    // return token;
+    return { token, user: findUser };
   }
 }
