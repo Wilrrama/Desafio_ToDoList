@@ -4,6 +4,7 @@ import { TLoginForm } from "../../pages/login/schema";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { TRegisterForm } from "../../pages/register/schema";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -37,9 +38,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       console.log(data.user);
       localStorage.setItem("@TOKEN_TODO", data.accessToken);
       console.log("Usuário logado com sucesso.");
+      toast.success("Usuário logado com sucesso.");
       navigate("/dashboard");
     } catch (error: AxiosError | any) {
       console.log("Senha ou e-mail inválidos");
+      toast.error("Senha ou e-mail inválidos.");
       console.error(error.message);
     }
   };
@@ -50,9 +53,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       console.log(formData);
 
       console.log("Usuário criado com sucesso.");
-
+      toast.success("Usuário criado com sucesso.");
       navigate("/login");
     } catch (error: AxiosError | any) {
+      toast.error("E-mail já existente.");
       console.log("E-mail já existente.");
 
       console.error(error.message);
@@ -63,6 +67,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     setUser(null);
 
     localStorage.removeItem("@TOKEN_TODO");
+
+    toast.success("Usuário deslogado com sucesso!");
 
     navigate("/");
   };
