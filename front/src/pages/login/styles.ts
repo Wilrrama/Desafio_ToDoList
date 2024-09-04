@@ -29,6 +29,10 @@ export const StyledLogin = styled.section`
       text-align: center;
     }
 
+    span {
+      color: #ffcc00;
+    }
+
     .input__container {
       display: flex;
       flex-direction: column;

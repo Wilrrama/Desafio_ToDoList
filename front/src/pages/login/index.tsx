@@ -22,6 +22,7 @@ export const Login = () => {
   const submit: SubmitHandler<TLoginForm> = async (formData) => {
     console.log(formData);
     await userLogin(formData);
+    reset();
   };
 
   return (
@@ -44,7 +45,7 @@ export const Login = () => {
             <Button name={"Entrar"} type="submit" />
             <p>Não possui cadastro?</p>
             <Link to="/register">
-              <Button name={"Cadastra-se"} />
+              <Button name={"Cadastrar-se"} />
             </Link>
           </div>
         </form>
