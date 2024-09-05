@@ -8,28 +8,30 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 import { useContext } from "react";
 import { loginFormSchema, TLoginForm } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loading } from "../../components/loading";
 
 export const Login = () => {
   const {
-    reset,
+    // reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TLoginForm>({ resolver: zodResolver(loginFormSchema) });
 
-  const { userLogin } = useContext(UserContext);
+  const { userLogin, loading } = useContext(UserContext);
 
   const submit: SubmitHandler<TLoginForm> = async (formData) => {
     console.log(formData);
     await userLogin(formData);
-    reset();
+    // reset();
   };
 
   return (
     <StyledLogin>
+      {loading && <Loading />}
       <div className="form__container">
         <form onSubmit={handleSubmit(submit)}>
-          <h1> Login</h1>
+          <h1>Login</h1>
           <p>Acesse suas Tarefas</p>
           <div className="input__container">
             <Input placeholder="E-mail" type="email" {...register("email")} />

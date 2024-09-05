@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
 import mascote from "../../assets/img/mascote.png";
 import { StyledHome } from "./styles";
+import { useState, useEffect } from "react";
+import { Loading } from "../../components/loading";
 
 export const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <StyledHome>
       <div>
