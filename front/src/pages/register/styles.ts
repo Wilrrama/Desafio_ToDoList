@@ -11,6 +11,7 @@ export const StyledRegister = styled.section`
   margin: 0 auto;
 
   h3 {
+    margin-top: 30px;
     color: #fff;
     margin-bottom: 10px;
     cursor: pointer;
