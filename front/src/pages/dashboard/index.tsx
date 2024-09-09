@@ -1,11 +1,17 @@
 import { Button } from "../../fragments/button";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext/UserContext";
 import girafa_cabeca from "../../assets/img/girafa_cabeca.png";
 import { NavbarUser } from "./styles";
+import { Modal } from "../../components/modal";
+import { ModalUpdateUser } from "./components/ModalUpdateUser";
 
 export const Dashboard = () => {
   const { user, userLogout } = useContext(UserContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -19,7 +25,7 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="button__container">
-            <Button name={"Editar"} />
+            <Button name={"Editar"} onClick={handleOpenModal} />
             <Button
               name={"Sair"}
               onClick={userLogout}
@@ -28,6 +34,12 @@ export const Dashboard = () => {
           </div>
         </div>
       </NavbarUser>
+
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2>Editar Usuário</h2>
+        <ModalUpdateUser />
+      </Modal>
+
       <h1>nenhuma tarefa</h1>
     </>
   );

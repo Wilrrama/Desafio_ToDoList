@@ -14,6 +14,7 @@ export interface IUserProviderProps {
 
 export interface IUserContext {
   user: IUser | null;
+  setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
   loading: ILoading | boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean | ILoading>>;
   userLogin: (formData: any) => Promise<void>;
@@ -22,6 +23,7 @@ export interface IUserContext {
 }
 
 export interface IUser {
+  password: string | undefined;
   id: number;
   name: string;
   email: string;
@@ -31,6 +33,8 @@ export interface ILoading {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export const AuthContext = createContext({});
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -46,7 +50,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       console.log("Resposta da API:", data);
       setUser(data.user);
       console.log(data.user);
-      localStorage.setItem("@TOKEN_TODO", data.accessToken);
+      localStorage.setItem("@TOKEN_TODO", data.token);
+      localStorage.setItem("@USERID_TODO", data.user.id);
+      localStorage.setItem("@USER_TODO", JSON.stringify(data.user));
+
       console.log("Usuário logado com sucesso.");
       toast.success("Usuário logado com sucesso.");
       navigate("/dashboard");
@@ -82,6 +89,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     setUser(null);
 
     localStorage.removeItem("@TOKEN_TODO");
+    localStorage.removeItem("@USERID_TODO");
+    localStorage.removeItem("@USER_TODO");
 
     toast.success("Usuário deslogado com sucesso!");
 
@@ -99,7 +108,15 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loading, userLogin, userLogout, userRegister, setLoading }}
+      value={{
+        user,
+        setUser,
+        loading,
+        userLogin,
+        userLogout,
+        userRegister,
+        setLoading,
+      }}
     >
       {children}
     </UserContext.Provider>
