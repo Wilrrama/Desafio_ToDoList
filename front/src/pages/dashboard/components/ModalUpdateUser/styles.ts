@@ -4,7 +4,8 @@ export const StyledModalUpdateUser = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 600px;
+  max-width: 500px;
+
   width: 100%;
   background: #fff;
   border-radius: 8px;
@@ -25,7 +26,7 @@ export const StyledModalUpdateUser = styled.div`
   .form-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
   }
 
   .input-row {

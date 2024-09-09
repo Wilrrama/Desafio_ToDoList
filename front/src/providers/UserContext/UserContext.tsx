@@ -101,9 +101,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500); // Simulação de tempo de loading
+    }, 500);
 
-    return () => clearTimeout(timer); // Limpa o timeout ao desmontar
+    return () => clearTimeout(timer);
   }, [location]);
 
   return (

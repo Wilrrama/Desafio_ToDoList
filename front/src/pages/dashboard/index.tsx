@@ -1,17 +1,23 @@
 import { Button } from "../../fragments/button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../providers/UserContext/UserContext";
 import girafa_cabeca from "../../assets/img/girafa_cabeca.png";
-import { NavbarUser } from "./styles";
+import { NavbarUser, TasksContainer } from "./styles";
 import { Modal } from "../../components/modal";
 import { ModalUpdateUser } from "./components/ModalUpdateUser";
+import { TaskContext } from "../../providers/TaskContext/TaskContext";
 
 export const Dashboard = () => {
+  const { tasks = [], getTasks } = useContext(TaskContext);
   const { user, userLogout } = useContext(UserContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalUpdateUserOpen, setIsModalUpdateUserOpen] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleOpenModal = () => setIsModalUpdateUserOpen(true);
+  const handleCloseModal = () => setIsModalUpdateUserOpen(false);
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   return (
     <>
@@ -35,12 +41,56 @@ export const Dashboard = () => {
         </div>
       </NavbarUser>
 
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <h2>Editar Usuário</h2>
+      <Modal isOpen={isModalUpdateUserOpen} onClose={handleCloseModal}>
         <ModalUpdateUser />
       </Modal>
 
-      <h1>nenhuma tarefa</h1>
+      <div>
+        <Button name={"Adicionar Tarefas"} />
+      </div>
+
+      <TasksContainer>
+        <div>
+          {tasks.length === 0 ? (
+            <h1>Nenhuma tarefa cadastrada</h1>
+          ) : (
+            <div>
+              <h1>Lista de Tarefas</h1>
+              <ul>
+                {tasks.map((task) => (
+                  <li key={task.id}>
+                    <div>
+                      <h2>{task.title}</h2>
+                      <p>{task.description}</p>
+                      {/* Checkbox e Texto de Status */}
+                      <label style={{ display: "flex", alignItems: "center" }}>
+                        <input
+                          type="checkbox"
+                          checked={task.completed}
+                          onChange={() => handleToggleStatus(task.id)}
+                          style={{ marginRight: "10px" }} // Espaçamento entre checkbox e texto
+                        />
+                        {task.completed ? "Concluída" : "Pendente"}
+                      </label>
+                      {/* Botões de Alterar e Excluir */}
+                      <div className="button__container">
+                        <button onClick={() => handleEditTask(task.id)}>
+                          Alterar
+                        </button>
+                        <button
+                        // onClick={() => handleDeleteTask(task.id)}
+                        >
+                          Excluir
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </TasksContainer>
     </>
   );
 };

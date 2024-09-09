@@ -6,6 +6,7 @@ import { Header } from "./components/header";
 import { Footer } from "./components/footer";
 import { AppContainer, MainContent } from "./styles/appStyles";
 import { UserProvider } from "./providers/UserContext/UserContext";
+import { TaskProvider } from "./providers/TaskContext/TaskContext";
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <Header />
         <MainContent>
           <UserProvider>
-            <RoutesMain />
+            <TaskProvider>
+              <RoutesMain />
+            </TaskProvider>
           </UserProvider>
         </MainContent>
         <Footer />

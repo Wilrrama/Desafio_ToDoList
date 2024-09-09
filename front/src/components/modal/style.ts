@@ -4,6 +4,7 @@ export const ModalOverlay = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  padding-top: 50px;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -17,7 +18,7 @@ export const ModalContent = styled.div`
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
 `;
 

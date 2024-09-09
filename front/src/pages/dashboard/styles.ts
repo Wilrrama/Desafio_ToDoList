@@ -90,3 +90,86 @@ export const NavbarUser = styled.div`
     }
   }
 `;
+
+export const TasksContainer = styled.section`
+  display: flex;
+  justify-content: center; /* Alinha os cards no centro */
+  padding: 20px;
+  width: 100%; /* O container ocupa toda a largura */
+  box-sizing: border-box;
+
+  h1 {
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  li {
+    max-width: 400px; /* Define um tamanho máximo para os cards */
+    width: 100%; /* Os cards ocupam 100% da largura até o limite definido */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  .button__container {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    gap: 10px;
+  }
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+
+  button:first-of-type {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  button:last-of-type {
+    background-color: #f44336;
+    color: white;
+  }
+`;
