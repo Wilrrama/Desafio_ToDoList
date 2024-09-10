@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const PageContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
 export const StyledHome = styled.main`
   display: flex;
   justify-content: center;
@@ -7,8 +14,6 @@ export const StyledHome = styled.main`
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
-  /* max-width: 1200px; */
-  margin: 0 auto;
 
   img {
     max-width: 380px;

@@ -8,8 +8,5 @@ export const AppContainer = styled.div`
 
 export const MainContent = styled.main`
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #4d4d4d;
 `;

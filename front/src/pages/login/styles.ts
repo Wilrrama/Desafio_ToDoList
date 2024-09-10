@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const LoginContainer = styled.main`
+  background-color: #4d4d4d;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+`;
+
 export const StyledLogin = styled.section`
   display: flex;
   justify-content: center;
@@ -11,6 +18,7 @@ export const StyledLogin = styled.section`
   .form__container {
     width: 100%;
     max-width: 400px;
+    min-width: 280px;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(251, 188, 36, 0.8);
@@ -93,7 +101,9 @@ export const StyledLogin = styled.section`
     max-width: 500px;
 
     img {
-      max-width: 100%;
+      min-width: 300px;
+      max-width: 400px;
+
       height: auto;
       border-radius: 8px;
     }
@@ -110,14 +120,14 @@ export const StyledLogin = styled.section`
     }
 
     .image__container {
-      width: 90%;
+      width: 80%;
       max-width: 400px;
     }
   }
 
   @media (max-width: 480px) {
     .form__container {
-      width: 100%;
+      width: 80%;
       padding: 15px;
     }
   }
