@@ -1,23 +1,32 @@
 import { Button } from "../../fragments/button";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/UserContext/UserContext";
 import girafa_cabeca from "../../assets/img/girafa_cabeca.png";
-import { NavbarUser, TasksContainer } from "./styles";
+import { AddTaskButton, NavbarUser, TasksContainer } from "./styles";
 import { Modal } from "../../components/modal";
 import { ModalUpdateUser } from "./components/ModalUpdateUser";
 import { TaskContext } from "../../providers/TaskContext/TaskContext";
+import { ModalAddTask } from "./components/ModalAddTask";
 
 export const Dashboard = () => {
-  const { tasks = [], getTasks } = useContext(TaskContext);
+  const { tasks, deleteTask } = useContext(TaskContext);
   const { user, userLogout } = useContext(UserContext);
   const [isModalUpdateUserOpen, setIsModalUpdateUserOpen] = useState(false);
+  const [isModalAddTaskOpen, setIsModalAddTaskOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalUpdateUserOpen(true);
   const handleCloseModal = () => setIsModalUpdateUserOpen(false);
 
-  useEffect(() => {
-    getTasks();
-  }, []);
+  const handleOpenModalAddTask = () => setIsModalAddTaskOpen(true);
+  const handleCloseModalAddTask = () => setIsModalAddTaskOpen(false);
+
+  const handleDeleteTask = async (taskId: string | number) => {
+    try {
+      await deleteTask(taskId);
+    } catch (error) {
+      console.error("Erro ao excluir tarefa:", error);
+    }
+  };
 
   return (
     <>
@@ -45,9 +54,13 @@ export const Dashboard = () => {
         <ModalUpdateUser />
       </Modal>
 
-      <div>
-        <Button name={"Adicionar Tarefas"} />
-      </div>
+      <AddTaskButton onClick={handleOpenModalAddTask}>
+        Adicionar Tarefas
+      </AddTaskButton>
+
+      <Modal isOpen={isModalAddTaskOpen} onClose={handleCloseModalAddTask}>
+        <ModalAddTask />
+      </Modal>
 
       <TasksContainer>
         <div>
@@ -66,20 +79,20 @@ export const Dashboard = () => {
                       <label style={{ display: "flex", alignItems: "center" }}>
                         <input
                           type="checkbox"
-                          checked={task.completed}
-                          onChange={() => handleToggleStatus(task.id)}
-                          style={{ marginRight: "10px" }} // Espaçamento entre checkbox e texto
+                          checked={task.status}
+                          // onChange={() => handleToggleStatus(task.id)}
+                          style={{ marginRight: "10px" }}
                         />
-                        {task.completed ? "Concluída" : "Pendente"}
+                        {task.status ? "Concluída" : "Pendente"}
                       </label>
                       {/* Botões de Alterar e Excluir */}
                       <div className="button__container">
-                        <button onClick={() => handleEditTask(task.id)}>
+                        <button
+                        // onClick={() => handleEditTask(task.id)}
+                        >
                           Alterar
                         </button>
-                        <button
-                        // onClick={() => handleDeleteTask(task.id)}
-                        >
+                        <button onClick={() => handleDeleteTask(task.id)}>
                           Excluir
                         </button>
                       </div>

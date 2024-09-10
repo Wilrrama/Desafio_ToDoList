@@ -95,7 +95,7 @@ export const ModalUpdateUser = () => {
                 <div className="input-wrapper">
                   <Input
                     type="password"
-                    placeholder="Senha (deixe em branco se não quiser alterar)"
+                    placeholder="senha"
                     {...register("password")}
                   />
                   {errors.password && <span>{errors.password.message}</span>}
