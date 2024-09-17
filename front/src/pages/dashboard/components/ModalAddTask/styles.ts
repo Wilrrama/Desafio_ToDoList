@@ -22,6 +22,21 @@ export const StyledModalAddTask = styled.div`
     width: 100%;
   }
 
+  .description {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 120px;
+    resize: none;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
   .form-container {
     display: flex;
     flex-direction: column;

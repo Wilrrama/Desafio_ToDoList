@@ -26,7 +26,7 @@ export const ModalUpdateUser = () => {
   const updateUser = async (data: TUpdateForm) => {
     try {
       const userId = localStorage.getItem("@USERID_TODO");
-      console.log("User ID from localStorage:", userId);
+
       if (userId) {
         const body: Partial<TUpdateForm> = {
           name: data.name,

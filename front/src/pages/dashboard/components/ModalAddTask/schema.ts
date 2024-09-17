@@ -6,3 +6,6 @@ export const taskSchema = z.object({
 });
 
 export type TAddTask = z.infer<typeof taskSchema>;
+
+export const editTaskSchema = taskSchema.partial();
+export type TEditTask = z.infer<typeof editTaskSchema>;
