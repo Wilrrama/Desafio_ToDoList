@@ -43,6 +43,26 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem("@TOKEN_TODO");
+      const storedUser = localStorage.getItem("@USER_TODO"); // Recupera o usuário do localStorage
+
+      if (token && storedUser) {
+        try {
+          setLoading(true);
+          const userData = JSON.parse(storedUser);
+          setUser(userData);
+        } catch (error: AxiosError | any) {
+          console.error(error.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+    getUser();
+  }, []);
+
   const userLogin = async (formData: TLoginForm) => {
     try {
       setLoading(true);
