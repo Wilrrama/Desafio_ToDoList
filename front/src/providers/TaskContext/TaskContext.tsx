@@ -23,6 +23,7 @@ interface ITaskContext {
   deleteTask: (taskId: string | number) => Promise<void>;
   createTask: (formData: ITaskWithoutId) => Promise<void>;
   getTasktById: (taskId: number | string) => Promise<any>;
+  updateTaskStatus: (taskId: string | number, newStatus: boolean) => void;
   getTasks: () => Promise<void>;
 }
 
@@ -77,7 +78,7 @@ export const TaskProvider = ({ children }: ITasksProviderProps) => {
       });
 
       setTasks(response.data);
-      toast.success("Tarefas carregadas com sucesso!");
+      // toast.success("Tarefas carregadas com sucesso!");
     } catch (error) {
       toast.error("Erro ao carregar tarefas");
       console.error("Erro ao buscar tarefas:", error);
@@ -119,6 +120,43 @@ export const TaskProvider = ({ children }: ITasksProviderProps) => {
     }
   };
 
+  const updateTaskStatus = async (
+    taskId: string | number,
+    newStatus: boolean
+  ) => {
+    const token = localStorage.getItem("@TOKEN_TODO");
+
+    if (!token) {
+      console.error("Token de autenticação não encontrado.");
+      return;
+    }
+
+    try {
+      const response = await api.patch(
+        `/tasks/${taskId}`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (response.status === 200 || response.status === 204) {
+        const updatedTasks = tasks.map((task) =>
+          task.id === taskId ? { ...task, status: newStatus } : task
+        );
+        setTasks(updatedTasks);
+        getTasks(); // Atualiza a lista de tarefas
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        console.error("Autenticação falhou: Token inválido ou expirado.");
+        // Você pode adicionar aqui uma lógica para redirecionar para login
+      } else {
+        console.error("Erro ao atualizar status da tarefa: ", error);
+      }
+    }
+  };
+
   return (
     <TaskContext.Provider
       value={{
@@ -128,6 +166,7 @@ export const TaskProvider = ({ children }: ITasksProviderProps) => {
         createTask,
         getTasktById,
         getTasks,
+        updateTaskStatus,
       }}
     >
       {children}
