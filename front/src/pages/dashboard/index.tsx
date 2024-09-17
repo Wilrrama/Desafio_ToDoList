@@ -10,7 +10,7 @@ import { ModalAddTask } from "./components/ModalAddTask";
 import { ModalEditTask } from "./components/ModalEditTask";
 
 export const Dashboard = () => {
-  const { tasks, deleteTask } = useContext(TaskContext);
+  const { tasks, deleteTask, updateTaskStatus } = useContext(TaskContext);
   const { user, userLogout } = useContext(UserContext);
   const [selectedTaskId, setSelectedTaskId] = useState<string | number | null>(
     null
@@ -40,6 +40,13 @@ export const Dashboard = () => {
       await deleteTask(taskId);
     } catch (error) {
       console.error("Erro ao excluir tarefa:", error);
+    }
+  };
+
+  const handleToggleStatus = (taskId: string | number) => {
+    const task = tasks.find((t) => t.id === taskId);
+    if (task) {
+      updateTaskStatus(taskId, !task.status);
     }
   };
 
@@ -99,7 +106,7 @@ export const Dashboard = () => {
                         <input
                           type="checkbox"
                           checked={task.status}
-                          // onChange={() => handleToggleStatus(task.id)}
+                          onChange={() => handleToggleStatus(task.id)}
                           style={{ marginRight: "10px" }}
                         />
                         {task.status ? "Concluída" : "Pendente"}
