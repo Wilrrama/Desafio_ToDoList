@@ -7,18 +7,33 @@ import { Modal } from "../../components/modal";
 import { ModalUpdateUser } from "./components/ModalUpdateUser";
 import { TaskContext } from "../../providers/TaskContext/TaskContext";
 import { ModalAddTask } from "./components/ModalAddTask";
+import { ModalEditTask } from "./components/ModalEditTask";
 
 export const Dashboard = () => {
   const { tasks, deleteTask } = useContext(TaskContext);
   const { user, userLogout } = useContext(UserContext);
+  const [selectedTaskId, setSelectedTaskId] = useState<string | number | null>(
+    null
+  );
   const [isModalUpdateUserOpen, setIsModalUpdateUserOpen] = useState(false);
   const [isModalAddTaskOpen, setIsModalAddTaskOpen] = useState(false);
+  const [isModalEditTaskOpen, setIsModalEditTaskOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalUpdateUserOpen(true);
   const handleCloseModal = () => setIsModalUpdateUserOpen(false);
 
   const handleOpenModalAddTask = () => setIsModalAddTaskOpen(true);
   const handleCloseModalAddTask = () => setIsModalAddTaskOpen(false);
+
+  const handleOpenModalEditTask = (taskId: string | number) => {
+    setSelectedTaskId(taskId);
+    setIsModalEditTaskOpen(true);
+  };
+
+  const handleCloseModalEditTask = () => {
+    setIsModalEditTaskOpen(false);
+    setSelectedTaskId(null);
+  };
 
   const handleDeleteTask = async (taskId: string | number) => {
     try {
@@ -62,6 +77,10 @@ export const Dashboard = () => {
         <ModalAddTask />
       </Modal>
 
+      <Modal isOpen={isModalEditTaskOpen} onClose={handleCloseModalEditTask}>
+        {selectedTaskId && <ModalEditTask taskId={selectedTaskId} />}
+      </Modal>
+
       <TasksContainer>
         <div>
           {tasks.length === 0 ? (
@@ -88,7 +107,7 @@ export const Dashboard = () => {
                       {/* Botões de Alterar e Excluir */}
                       <div className="button__container">
                         <button
-                        // onClick={() => handleEditTask(task.id)}
+                          onClick={() => handleOpenModalEditTask(task.id)}
                         >
                           Alterar
                         </button>

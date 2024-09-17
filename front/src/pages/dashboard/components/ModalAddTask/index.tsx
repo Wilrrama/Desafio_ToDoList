@@ -27,7 +27,7 @@ export const ModalAddTask = () => {
 
   return (
     <StyledModalAddTask>
-      <h1>Adicionar Tarefas Modal</h1>
+      <h1>Adicionar Tarefas</h1>
       <form onSubmit={handleSubmit(submit)}>
         <div className="form-container">
           <div className="input-wrapper">
@@ -41,9 +41,9 @@ export const ModalAddTask = () => {
           </div>
 
           <div className="input-wrapper">
-            <Input
-              type="text"
-              id="description"
+            <textarea
+              className="description"
+              // type="text"
               placeholder="Descrição da tarefa"
               {...register("description")}
             />
