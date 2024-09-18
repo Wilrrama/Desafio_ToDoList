@@ -96,35 +96,48 @@ export const Dashboard = () => {
             <div>
               <h1>Lista de Tarefas</h1>
               <ul>
-                {tasks.map((task) => (
-                  <li key={task.id}>
-                    <div>
-                      <h2>{task.title}</h2>
-                      <p>{task.description}</p>
-                      {/* Checkbox e Texto de Status */}
-                      <label style={{ display: "flex", alignItems: "center" }}>
-                        <input
-                          type="checkbox"
-                          checked={task.status}
-                          onChange={() => handleToggleStatus(task.id)}
-                          style={{ marginRight: "10px" }}
-                        />
-                        {task.status ? "Concluída" : "Pendente"}
-                      </label>
-                      {/* Botões de Alterar e Excluir */}
-                      <div className="button__container">
-                        <button
-                          onClick={() => handleOpenModalEditTask(task.id)}
+                {tasks
+                  .slice()
+                  .sort((a, b) => a.title.localeCompare(b.title))
+                  .map((task) => (
+                    <li
+                      key={task.id}
+                      style={{
+                        backgroundColor: task.status ? "#ADD8E6" : "#FFFFE0", // cor amarela clara se concluída
+                        padding: "10px", // opcional: para espaçamento interno consistente
+                        borderRadius: "5px", // opcional: para bordas arredondadas
+                        marginBottom: "10px", // opcional: para espaçamento entre itens
+                      }}
+                    >
+                      <div>
+                        <h2>{task.title}</h2>
+                        <p>{task.description}</p>
+                        {/* Checkbox e Texto de Status */}
+                        <label
+                          style={{ display: "flex", alignItems: "center" }}
                         >
-                          Alterar
-                        </button>
-                        <button onClick={() => handleDeleteTask(task.id)}>
-                          Excluir
-                        </button>
+                          <input
+                            type="checkbox"
+                            checked={task.status}
+                            onChange={() => handleToggleStatus(task.id)}
+                            style={{ marginRight: "10px" }}
+                          />
+                          {task.status ? "Concluída" : "Pendente"}
+                        </label>
+                        {/* Botões de Alterar e Excluir */}
+                        <div className="button__container">
+                          <button
+                            onClick={() => handleOpenModalEditTask(task.id)}
+                          >
+                            Alterar
+                          </button>
+                          <button onClick={() => handleDeleteTask(task.id)}>
+                            Excluir
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  ))}
               </ul>
             </div>
           )}
