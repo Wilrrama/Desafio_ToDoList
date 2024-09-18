@@ -1,14 +1,23 @@
 # Desafio ToDoList
 
-Bem-vindo ao projeto **Desafio ToDoList** desenvolvido para a Jack Experts. Este é um backend completo para um sistema de gerenciamento de tarefas (to-do list) que permite o gerenciamento de usuários e tarefas com autenticação via JWT.
+Bem-vindo ao projeto **Desafio ToDoList** desenvolvido para a Jack Experts. Este projeto consiste em um sistema completo de gerenciamento de tarefas (to-do list) com backend e frontend separados. O backend gerencia usuários, autenticação e tarefas, enquanto o frontend fornece a interface para interação do usuário.
 
-## Funcionalidades
+## Funcionalidades do Backend
 
 - **Gerenciamento de Usuários**: Criação, visualização e exclusão de usuários.
 - **Autenticação**: Login e geração de token JWT.
 - **Gerenciamento de Tarefas**: Criação, atualização, listagem e exclusão de tarefas.
 
+## Funcionalidades do Frontend
+
+- **Autenticação de Usuário**: Interface para login e logout.
+- **Gerenciamento Visual de Tarefas**: Listagem, criação, atualização e exclusão de tarefas.
+- **Atualização de Status**: Permite marcar tarefas como concluídas ou pendentes.
+- **Responsividade**: Design adaptado para diferentes dispositivos.
+
 ## Tecnologias Utilizadas
+
+### Backend
 
 - **Node.js**: Ambiente de execução JavaScript.
 - **Express**: Framework para criação de APIs.
@@ -18,15 +27,24 @@ Bem-vindo ao projeto **Desafio ToDoList** desenvolvido para a Jack Experts. Este
 - **JWT**: Autenticação baseada em tokens.
 - **Typescript**: Linguagem para desenvolvimento com tipagem estática.
 
+### Frontend
+
+- **React**: Biblioteca para construção da interface do usuário.
+- **TypeScript**: Linguagem para desenvolvimento com tipagem estática.
+- **Context API**: Gerenciamento de estado global da aplicação.
+- **Styled-components**: Estilização de componentes de forma modular e escalável.
+- **Axios**: Cliente HTTP para comunicação com o backend.
+
 ## Estrutura do Projeto
 
 A estrutura do projeto é a seguinte:
 
 - `back/` - Diretório principal do backend, onde estão localizados todos os arquivos relacionados à API e ao servidor.
+- `front/` - Diretório principal do frontend, onde estão os arquivos da interface de usuário e interações.
 
 ## Instalação
 
-Para começar a utilizar o projeto, siga as etapas abaixo:
+### Backend
 
 1. **Clone o repositório**:
 
@@ -34,7 +52,7 @@ Para começar a utilizar o projeto, siga as etapas abaixo:
    git clone https://github.com/Wilrrama/Desafio_ToDoList.git
    ```
 
-2. **Navegue até o diretório do projeto**:
+2. **Navegue até o diretório do backend**:
 
    ```bash
    cd Desafio_ToDoList/back
@@ -59,10 +77,32 @@ Para começar a utilizar o projeto, siga as etapas abaixo:
 5. **Inicie o servidor**:
 
    ```bash
-   npm run
+   npm run dev
    ```
 
    O servidor estará disponível em `http://localhost:3000`.
+
+### Frontend
+
+1. **Navegue até o diretório do frontend**:
+
+   ```bash
+   cd Desafio_ToDoList/front
+   ```
+
+2. **Instale as dependências**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Inicie a aplicação**:
+
+   ```bash
+   npm run dev
+   ```
+
+   A aplicação estará disponível em `http://localhost:5173/`.
 
 ## Diagrama UML
 
@@ -99,5 +139,3 @@ Aqui estão alguns dos principais endpoints disponíveis na API:
 Este projeto está licenciado sob a MIT License. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
-
-Para mais informações, consulte a documentação da API ou entre em contato com a equipe de desenvolvimento.

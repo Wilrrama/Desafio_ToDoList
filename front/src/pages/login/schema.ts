@@ -7,7 +7,7 @@ export const loginFormSchema = z.object({
     .email("O e-mail fornecido é inválido."),
   password: z
     .string()
-    .min(1, "O e-mail é obrigatório.")
+    .min(1, "A senha é obrigatória.")
     .min(
       6,
       "A senha deve ter no mínimo 6 caracteres. E conter 1 carctere especial "
